@@ -346,18 +346,39 @@ eval(parse("G:/Alertas/scripts/balancoPantanal.R", encoding = "UTF-8"))
 ########################################################################
 ########################################################################
 
-edit_r_environ()
 
-library(httr)
-library(openssl)
-library(usethis)
-
-use_github(protocol = 'https', auth_token =  Sys.getenv("GITHUB_PAT"))
+# use_github(protocol = 'https', auth_token =  Sys.getenv("GITHUB_PAT"))
 
 # Set your personal access token and repository details
 access_token <- "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"
 repo_owner <- "msuassuna"
 repo_name <- "SAHs"
+
+#install.packages("git2r")
+library(git2r)
+
+# Insure you have navigated to a directory with a git repo.
+dir <- "G:/SAHs"
+setwd(dir)
+
+# Configure git.
+git2r::config(user.name = "myusername",user.email = "myemail")
+
+# Check git status.
+gitstatus()
+
+# Download a file.
+url <- "https://i.kym-cdn.com/entries/icons/original/000/002/232/bullet_cat.jpg"
+destfile <- "bullet_cat.jpg"
+download.file(url,destfile)
+
+# Add and commit changes. 
+gitadd()
+gitcommit()
+
+# Push changes to github.
+gitpush()
+
 
 # Create the repository
 #create_repo <- function() {
