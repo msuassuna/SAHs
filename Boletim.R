@@ -356,21 +356,17 @@ repo_name <- "SAHs"
 
 #install.packages("git2r")
 library(git2r)
+library(openssl)
+library(httr)
 
 # Insure you have navigated to a directory with a git repo.
 dir <- "G:/SAHs"
-setwd(dir)
 
 # Configure git.
-git2r::config(user.name = "myusername",user.email = "myemail")
+git2r::config(user.name = repo_owner,user.email = "msuassuna@gmail.com")
 
 # Check git status.
 gitstatus()
-
-# Download a file.
-url <- "https://i.kym-cdn.com/entries/icons/original/000/002/232/bullet_cat.jpg"
-destfile <- "bullet_cat.jpg"
-download.file(url,destfile)
 
 # Add and commit changes. 
 gitadd()
@@ -398,37 +394,37 @@ gitpush()
 
 #create_repo()
 
-#all_plot_file <- dir("G:/Alertas/figuras/sazonal")
+all_plot_file <- dir("G:/Alertas/figuras/sazonal")
 
-#i <- 1
+i <- 1
 
-#this_plot_file <- all_plot_file[i]
+this_plot_file <- all_plot_file[i]
 
 # Upload the plot file to GitHub
-#upload_plot <- function() {
-#  url <- paste0("https://api.github.com/repos/", repo_owner, "/", repo_name, "/contents/", this_plot_file)
+upload_plot <- function() {
+  url <- paste0("https://api.github.com/repos/", repo_owner, "/", repo_name, "/contents/", this_plot_file)
   
-#  plot_file <- paste0("G:/Alertas/figuras/sazonal/",this_plot_file)
+  plot_file <- paste0("G:/Alertas/figuras/sazonal/",this_plot_file)
   
-#  body <- list(
-#    path = plot_file,
-#    message = "Upload plot",
-#    content = base64_encode(readBin(plot_file, "raw")),
-#    branch = "main"
-#  )
+  body <- list(
+    path = plot_file,
+    message = "Upload plot",
+    content = base64_encode(readBin(plot_file, "raw")),
+    branch = "main"
+  )
   
-#  headers <- c(Authorization = paste("Bearer", access_token))
+  headers <- c(Authorization = paste("Bearer", access_token))
   
-#  response <- PUT(url, body = body, add_headers(headers))
+  response <- PUT(url, body = body, add_headers(headers))
   
-#  if (response$status_code == 201) {
-#    print("Plot uploaded successfully.")
-#  } else {
-#    stop("Error uploading plot.")
-#  }
-#}
+  if (response$status_code == 201) {
+    print("Plot uploaded successfully.")
+  } else {
+    stop("Error uploading plot.")
+  }
+}
 
-#upload_plot()
+upload_plot()
 
 # Push changes to the repository
 #push_changes <- function() {
