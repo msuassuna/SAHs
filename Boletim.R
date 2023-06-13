@@ -1,3 +1,5 @@
+# Arquivo que roda os script do boletim
+
 rm(list = ls())
 
 # Carrega todos os pacotes que serão utilizados
