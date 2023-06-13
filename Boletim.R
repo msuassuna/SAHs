@@ -13,6 +13,7 @@ library(stringr)
 library(lubridate)
 library(RCurl)
 library(png)
+library(usethis)
 library(ggplot2);cat('\014')
 
 # Lê arquivos com as informações das estações que serão usadas no script
@@ -345,8 +346,13 @@ eval(parse("G:/Alertas/scripts/balancoPantanal.R", encoding = "UTF-8"))
 ########################################################################
 ########################################################################
 
+edit_r_environ()
+
 library(httr)
 library(openssl)
+library(usethis)
+
+use_github(protocol = 'https', auth_token =  Sys.getenv("GITHUB_PAT"))
 
 # Set your personal access token and repository details
 access_token <- "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"
