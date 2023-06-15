@@ -1,6 +1,6 @@
-@echo off
+@echo Agora vai
 
-set GIT_PATH="C:\Users\marcus.santos\AppData\Local\Programs\Git\bin"
+set GIT_PATH="C:\Users\marcus.santos\AppData\Local\Programs\Git\bin\git.exe"
 set REPO_PATH="G:\SAHs"
 set GITHUB_USERNAME=msuassuna
 set GITHUB_PASSWORD=Mss!130183
@@ -12,7 +12,7 @@ cd %REPO_PATH%
 REM Update the GitHub page
 %GIT_PATH% add .
 %GIT_PATH% commit -m "Update GitHub page"
-%GIT_PATH% push 
+%GIT_PATH% push https://%GITHUB_USERNAME%:%GITHUB_PASSWORD%@github.com/%GITHUB_USERNAME%/%GITHUB_REPOSITORY%.git
 
 REM Open Git Bash
 start "" "%GIT_PATH%" bash.exe
